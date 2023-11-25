@@ -68,6 +68,6 @@ def get_station_forecast():
 
 @app.route('/', methods=["GET"])
 def get_home():
-    return 1
+    return '1'
 
-app.run()
+app.run(host= '0.0.0.0', port=5000)
