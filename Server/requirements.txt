@@ -1,0 +1,8 @@
+flask
+requests
+pandas
+numpy
+matplotlib
+prophet
+flask-cors
+rich
