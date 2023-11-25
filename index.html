@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="index.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="user-input">
+        <div>
+            Select time <input type="date" id="date">
+        </div>
+        <div>
+            Select training duration <input type="number" id="td" value="30">
+        </div>
+        <div>
+            Select prediction interval <input type="number" id="pi" value="5">
+        </div>
+        <button id="btn">Get Data</button>
+    </div>
+    <div id="plot"></div>
+</body>
+</html>
