@@ -14,7 +14,7 @@ yet_mapping_nsid = []
 def start_trainer(longitude, latitude, train_duration, from_date_timestamp, prediction_interval, sid):
     trainer = Trainer(longitude, latitude, train_duration, from_date_timestamp, prediction_interval)
     forecasts = trainer.get_all_forecasts()
-    with open("Server/db/mapped.json", "r+") as f:
+    with open("db/mapped.json", "r+") as f:
         data = json.load(f)
         data["stations"][sid] = forecasts
         f.seek(0)
@@ -46,7 +46,7 @@ def get_station_forecast():
 
     response = None
     nsid = client.get_nearest_station([longitude, latitude])
-    with open("Server/db/mapped.json", "r") as f:
+    with open("db/mapped.json", "r") as f:
         data = json.load(f)
         if nsid in list(data["stations"].keys()):
             response = {
