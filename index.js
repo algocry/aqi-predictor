@@ -18,7 +18,7 @@ async function get_sdata(){
         const pi = document.getElementById("pi").value;
 
         const coords = position.coords;
-        const apiUrl = 'https://aqi-predictor.0x0is1.repl.co/stationForecast';
+        const apiUrl = 'https://aqiapi.onrender.com/stationForecast';
         
         const params = new URLSearchParams();
 
