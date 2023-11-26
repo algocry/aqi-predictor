@@ -1,6 +1,7 @@
 import os
 import sys
 from rich.progress import track
+import json
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
@@ -25,4 +26,11 @@ def collect_data(longitude, latitude, initial_ts, days_count):
         periodic_aqi_data[period]["timestamp"] = int(initial_ts/1000)
         initial_ts -= CHECK_INTERVAL
 
-    return periodic_aqi_data
+        with open("db/mapped_data.json", "r+") as f:
+            data = json.load(f)
+            if sid not in list(data["data"].keys()):
+                data["data"][sid] = {}
+            data["data"][sid][str(days_count)] = periodic_aqi_data
+            f.seek(0)
+            json.dump(data, f, indent=2)
+            f.truncate()

@@ -9,8 +9,21 @@ import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 class Trainer:
-    def __init__(self, longitude, latitude, train_duration, from_date_timestamp, prediction_interval):
-        self.data = collect_data(longitude, latitude, from_date_timestamp, train_duration)
+    def __init__(self, longitude, latitude, train_duration, from_date_timestamp, prediction_interval, sid):
+        with open("db/mapped_data.json", "r") as f:
+            mdata = json.load(f)
+            if (sid not in list(mdata["data"].keys())):
+                collect_data(longitude, latitude, from_date_timestamp, train_duration)
+                self.__init__(longitude, latitude, train_duration, from_date_timestamp, prediction_interval, sid)
+                return
+            else:
+                print(str(train_duration), list(mdata["data"][sid].keys()), str(train_duration) not in list(mdata["data"][sid].keys()))
+                if (str(train_duration) not in list(mdata["data"][sid].keys())):
+                    collect_data(longitude, latitude, from_date_timestamp, train_duration)
+                    self.__init__(longitude, latitude, train_duration, from_date_timestamp, prediction_interval, sid)
+                    return                    
+                else:
+                    self.data = mdata["data"][sid][str(train_duration)]
         self.frame = pd.DataFrame.from_dict(self.data, orient="index")
         self.frame.replace("-", 0, inplace=True)
         self.prediction_interval = prediction_interval

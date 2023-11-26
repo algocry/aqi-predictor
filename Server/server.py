@@ -12,11 +12,18 @@ client = AQIClient()
 yet_mapping_nsid = []
 
 def start_trainer(longitude, latitude, train_duration, from_date_timestamp, prediction_interval, sid):
-    trainer = Trainer(longitude, latitude, train_duration, from_date_timestamp, prediction_interval)
+    trainer = Trainer(longitude, latitude, train_duration, from_date_timestamp, prediction_interval, sid)
     forecasts = trainer.get_all_forecasts()
-    with open("db/mapped.json", "r+") as f:
+    with open("db/models.json", "r+") as f:
         data = json.load(f)
-        data["stations"][sid] = forecasts
+        if sid not in list(data["stations"].keys()):
+            data["stations"][sid] = {}
+        
+        if str(prediction_interval) not in list(data["stations"][sid].keys()):
+            data["stations"][sid][str(prediction_interval)] = {}
+        
+        data["stations"][sid][str(prediction_interval)]["train_duration"] = train_duration
+        data["stations"][sid][str(prediction_interval)]["forecasts"] = forecasts        
         f.seek(0)
         json.dump(data, f, indent=2)
         f.truncate()
@@ -46,13 +53,24 @@ def get_station_forecast():
 
     response = None
     nsid = client.get_nearest_station([longitude, latitude])
-    with open("db/mapped.json", "r") as f:
+    with open("db/models.json", "r") as f:
         data = json.load(f)
         if nsid in list(data["stations"].keys()):
-            response = {
-                "status": 101,
-                "data": data["stations"][nsid]
-            }
+            if (str(prediction_interval) in list(data["stations"][nsid].keys())) and (str(train_duration) == str(data["stations"][nsid][str(prediction_interval)]["train_duration"])):
+                response = {
+                    "status": 101,
+                    "data": data["stations"][nsid][str(prediction_interval)]["forecasts"]
+                }
+            else:
+                response = {
+                    "status": 102,
+                    "data": "Your area is not mapped for given interval. Mapping your area..."
+                }
+            
+                if nsid not in yet_mapping_nsid:
+                    yet_mapping_nsid.append(nsid)
+                    t1 = threading.Thread(target=start_trainer, args=(longitude, latitude, train_duration, from_date_timestamp, prediction_interval, nsid))
+                    t1.start()
         else:
             response = {
                 "status": 102,
