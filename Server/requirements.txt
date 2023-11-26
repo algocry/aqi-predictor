@@ -6,3 +6,4 @@ matplotlib
 prophet
 flask-cors
 rich
+gunicorn
