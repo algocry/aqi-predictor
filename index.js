@@ -91,7 +91,7 @@ function plot_df(data, name, pi) {
     yaxis: {
       title: `${name} Value`,
     },
-    autosize: true, // Allow the plot to adjust its size
+    //autosize: true, // Allow the plot to adjust its size
   };
 
   // Plot the chart
