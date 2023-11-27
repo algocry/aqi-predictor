@@ -59,7 +59,7 @@ window.collapse = (ev) => {
 };
 
 function plot_df(data, name, pi) {
-  data = data.slice(-pi);
+  //data = data.slice(-pi);
   // Extract x and y values
   const xValues = data.map((entry) => new Date(entry.ds));
   const yValues = data.map((entry) => entry.yhat);
@@ -91,7 +91,7 @@ function plot_df(data, name, pi) {
     yaxis: {
       title: `${name} Value`,
     },
-    //autosize: true, // Allow the plot to adjust its size
+    autosize: true,
   };
 
   // Plot the chart
