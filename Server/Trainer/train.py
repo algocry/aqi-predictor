@@ -17,7 +17,6 @@ class Trainer:
                 self.__init__(longitude, latitude, train_duration, from_date_timestamp, prediction_interval, sid)
                 return
             else:
-                print(str(train_duration), list(mdata["data"][sid].keys()), str(train_duration) not in list(mdata["data"][sid].keys()))
                 if (str(train_duration) not in list(mdata["data"][sid].keys())):
                     collect_data(longitude, latitude, from_date_timestamp, train_duration)
                     self.__init__(longitude, latitude, train_duration, from_date_timestamp, prediction_interval, sid)

@@ -1,0 +1,124 @@
+* {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #ffff;
+}
+
+body{
+    position: relative;
+    background-color: rgb(47, 68, 85);
+    font-size: large;
+    padding: 0 20px;
+    overflow-x: hidden;
+}
+
+.nav .logo {
+    font-size: 40px;
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#user-input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: larger;
+    flex-direction: row;
+}
+
+#user-input > div {
+    padding: 8px;
+    background-color: #343434;
+    border-radius: 5px;
+}
+input, button {
+    color: #000000;
+    height: 30px;
+    border-radius: 5px;
+    border-width: 0;
+    font-size: large;
+    max-width: 130px;
+    text-align: center;
+    background-color: #ffffff;
+    margin: 0 5px;
+}
+
+button {
+    background-color: rgb(18, 220, 153);
+    color: #ffffff;
+    min-width: 160px;
+    transition: all 200ms ease-in;
+    height: 40px;
+}
+
+button:hover {
+    background-color: rgb(25, 173, 123);
+}
+
+#plots {
+    margin: 20px 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.plot {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #9a9a9a;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.plot span {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(94, 118, 137);
+    padding: 8px 10px;
+}
+
+.material-symbols-outlined {
+    margin-right: 10px;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all 200ms ease-in;
+}
+
+.material-symbols-outlined:hover {
+    background-color: rgb(137, 161, 181);
+}
+
+.user-select-none.svg-container {
+    max-width: 100%;
+}
+
+.js-plotly-plot.collapse {
+    max-height: 500px;
+    overflow: hidden;
+    opacity: 1;
+}
+
+.js-plotly-plot {
+    max-height: 0;
+    opacity: 0;
+    transition: all 500ms ease-in-out;
+}
+
+@media (max-width: 768px) {
+    #user-input {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    #user-input > div {
+        margin-bottom: 10px;
+    }
+}
