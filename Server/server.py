@@ -63,7 +63,7 @@ def get_station_forecast():
                 }
             else:
                 response = {
-                    "status": 102,
+                    "status": 103,
                     "data": "Your area is not mapped for given interval. Mapping your area..."
                 }
             

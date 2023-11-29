@@ -57,6 +57,19 @@ button:hover {
     background-color: rgb(25, 173, 123);
 }
 
+button[disabled]::after {
+  display: none !important;
+}
+
+button[disabled]:hover {
+    transition: none;
+    background-color: rgb(18, 220, 153);
+}
+
+button[disabled] {
+  cursor: not-allowed;
+}
+
 #plots {
     margin: 20px 0;
     position: relative;
@@ -121,4 +134,29 @@ button:hover {
     #user-input > div {
         margin-bottom: 10px;
     }
+}
+
+.loading-container {
+  text-align: center;
+}
+
+.loading-spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.message {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
 }
