@@ -56,15 +56,25 @@ def get_station_forecast():
     with open("db/models.json", "r") as f:
         data = json.load(f)
         if nsid in list(data["stations"].keys()):
-            if (str(prediction_interval) in list(data["stations"][nsid].keys())) and (str(train_duration) == str(data["stations"][nsid][str(prediction_interval)]["train_duration"])):
-                response = {
-                    "status": 101,
-                    "data": data["stations"][nsid][str(prediction_interval)]["forecasts"]
-                }
+            if (str(prediction_interval) in list(data["stations"][nsid].keys())):
+                if (str(train_duration) == str(data["stations"][nsid][str(prediction_interval)]["train_duration"])):
+                    response = {
+                        "status": 101,
+                        "data": data["stations"][nsid][str(prediction_interval)]["forecasts"]
+                    }
+                else:
+                    response = {
+                        "status": 104,
+                        "data": "Downloading updated data to train"
+                    }
+                    if nsid not in yet_mapping_nsid:
+                        yet_mapping_nsid.append(nsid)
+                        t1 = threading.Thread(target=start_trainer, args=(longitude, latitude, train_duration, from_date_timestamp, prediction_interval, nsid))
+                        t1.start()
             else:
                 response = {
                     "status": 103,
-                    "data": "Your area is not mapped for given interval. Mapping your area..."
+                    "data": "Downloading initial data to train"
                 }
             
                 if nsid not in yet_mapping_nsid:
@@ -74,7 +84,7 @@ def get_station_forecast():
         else:
             response = {
                 "status": 102,
-                "data": "Your area does not appear mapped. Mapping your area..."
+                "data": "Downloading and training forecast model"
             }
          
             if nsid not in yet_mapping_nsid:
@@ -88,4 +98,4 @@ def get_station_forecast():
 def get_home():
     return '1'
 
-app.run(host= '0.0.0.0', port=5000)
+app.run(host='0.0.0.0', port=5000)
