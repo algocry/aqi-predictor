@@ -63,7 +63,7 @@ async function get_sdata() {
           plot_df(JSON.parse(data[attrib]), attrib, pi);
         });
       } else {
-        document.querySelector(".message").innerText = data;
+        document.querySelector(".message").innerText = jsonData.data;
       }
 
       await new Promise((resolve) => setTimeout(resolve, 3000));
