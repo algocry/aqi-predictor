@@ -62,11 +62,8 @@ async function get_sdata() {
         Object.keys(data).forEach((attrib) => {
           plot_df(JSON.parse(data[attrib]), attrib, pi);
         });
-      } else if (status === 103) {
-        document.querySelector(".message").innerText = "Training your model";
-      } else if (status === 102) {
-        document.querySelector(".message").innerText =
-          "Downloading data and training your model";
+      } else {
+        document.querySelector(".message").innerText = data;
       }
 
       await new Promise((resolve) => setTimeout(resolve, 3000));
