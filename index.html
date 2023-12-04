@@ -1,31 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" src="index.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" /></head>
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <script src="scripts/home.js"></script>
+        <script src="scripts/meter.js"></script>
+        <link rel="stylesheet" href="styles/home.css">
+        <link rel="stylesheet" href="styles/gauge.css">
+        <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+</head>
+
 <body>
-    <div class="nav">
-        <div class="logo">
-            AQI Predictor
+    <section class="navigation">
+        <div class="nav-container">
+            <div class="brand">
+                <a href="/" id="logo">GlaSheers<span class="material-symbols-outlined">air</span></a>
+            </div>
+            <nav>
+                <div class="nav-mobile"><a id="navbar-toggle" href="#!"><span></span></a></div>
+                <ul class="nav-list">
+                    <li>
+                        <a href="#!">Home</a>
+                    </li>
+                    <li>
+                        <a href="/pages/predictor.html">Predictor</a>
+                    </li>
+                    <li>
+                        <a href="#!">Services</a>
+                        <ul class="navbar-dropdown">
+                            <li>
+                                <a href="#!">Sass</a>
+                            </li>
+                            <li>
+                                <a href="#!">Less</a>
+                            </li>
+                            <li>
+                                <a href="#!">Stylus</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#!">Portfolio</a>
+                    </li>
+                    <li>
+                        <a href="#!">Category</a>
+                        <ul class="navbar-dropdown">
+                            <li>
+                                <a href="#!">Sass</a>
+                            </li>
+                            <li>
+                                <a href="#!">Less</a>
+                            </li>
+                            <li>
+                                <a href="#!">Stylus</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#!">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <div class="meter-panel">
+        <svg id="noise-svg">
+            <!-- gives background a bit of texture -->
+            <filter id='noiseFilter'>
+                <feTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch' />
+            </filter>
+            <rect id="noise-rect" filter='url(#noiseFilter)' />
+        </svg>
+
+        <div class="clock off">
+            <div class="shadow"></div>
+
+            <div class="base-container">
+                <div class="base">
+                    <div></div>
+                </div>
+            </div>
+            <div class="small-outer-pipe">
+                <div class="small-inner-pipe"></div>
+            </div>
+            <div class="outer-pipe">
+                <div class="inner-pipe"></div>
+            </div>
+            <div class="pipe-accents">
+                <div class="top-tube"></div>
+                <div class="tube-holders">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="top"></div>
+                <div class="topinset"></div>
+                <div class="left">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="right">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="bottom-left"></div>
+                <div class="bottom-right"></div>
+            </div>
+
+            <div class="display">
+                <div class="row">
+                    <div class="col">
+                        <div>8</div>
+                        <div id="char01">0</div>
+                        <div id="char02">0</div>
+                    </div>
+                    <div class="col">
+                        <div>8</div>
+                        <div id="char11">0</div>
+                        <div id="char12">0</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div>8</div>
+                        <div id="char21">0</div>
+                        <div id="char22">0</div>
+                    </div>
+                    <div class="col">
+                        <div>8</div>
+                        <div id="char31">0</div>
+                        <div id="char32">0</div>
+                    </div>
+                </div>
+                <div style="height: 0.2em;"></div>
+                <div class="small-row">
+                    <div class="row">
+                        <div class="col">
+                            <div>8</div>
+                            <div id="char41">0</div>
+                            <div id="char42">0</div>
+                        </div>
+                        <div class="col">
+                            <div>8</div>
+                            <div id="char51">0</div>
+                            <div id="char52">0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div>8</div>
+                        <div id="char61">0</div>
+                        <div id="char62">0</div>
+                    </div>
+                    <div class="col">
+                        <div>8</div>
+                        <div id="char71">0</div>
+                        <div id="char72">0</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div>8</div>
+                        <div id="char81">0</div>
+                        <div id="char82">0</div>
+                    </div>
+                    <div class="col">
+                        <div>8</div>
+                        <div id="char91">0</div>
+                        <div id="char92">0</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div>8</div>
+                        <div id="char101">0</div>
+                        <div id="char102">0</div>
+                    </div>
+                    <div class="col">
+                        <div>8</div>
+                        <div id="char111">0</div>
+                        <div id="char112">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-tube"></div>
+            <div class="hex">
+                <div class="overlay"></div>
+            </div>
+
+            <div class="tube-base-container">
+                <div class="wires">
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="tube-base"></div>
+                <div class="rods">
+                    <div class="left-rod"></div>
+                    <div class="center-rod"></div>
+                    <div class="right-rod"></div>
+                </div>
+                <div class="tube-btm"></div>
+            </div>
+
+            <div class="power-cord">
+                <div></div>
+                <div></div>
+            </div>
+
+            <div class="button" onclick="body.querySelector('.clock').classList.toggle('off')">
+                <div></div>
+            </div>
         </div>
     </div>
-    <div id="user-input">
-        <div>
-            Start time <input type="date" id="date">
-        </div>
-        <div>
-            Training duration <input type="number" id="td" value="30">
-        </div>
-        <div>
-            Prediction interval <input type="number" id="pi" value="5">
-        </div>
-        <button id="btn">Get Data</button>
-    </div>
-    <div id="plots"></div>
 </body>
+
 </html>

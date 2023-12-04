@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="scripts/predictor.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>AQI Information</title>
+    <link rel="stylesheet" href="styles/predictor.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" /></head>
+<body>
+    <div class="nav">
+        <div class="logo">
+            AQI Predictor
+        </div>
+    </div>
+    <div id="user-input">
+        <div>
+            Start time <input type="date" id="date">
+        </div>
+        <div>
+            Training duration <input type="number" id="td" value="30">
+        </div>
+        <div>
+            Prediction interval <input type="number" id="pi" value="5">
+        </div>
+        <button id="btn">Get Data</button>
+    </div>
+    <div id="plots"></div>
+</body>
+</html>
